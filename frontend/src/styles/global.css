@@ -1,0 +1,383 @@
+:root {
+  color-scheme: light;
+  --bg: #f4f6fb;
+  --surface: #ffffff;
+  --surface-soft: #f8f9fd;
+  --text: #151a2d;
+  --text-muted: #5e6784;
+  --primary: #315efb;
+  --primary-soft: #e8edff;
+  --danger: #d73a49;
+  --success: #14804a;
+  --border: #e2e7f4;
+  --shadow: 0 12px 30px rgba(30, 50, 90, 0.08);
+  font-family: Manrope, Nunito Sans, Segoe UI, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at top right, var(--primary-soft) 0%, transparent 45%),
+    radial-gradient(circle at bottom left, var(--surface-soft) 0%, transparent 40%),
+    var(--bg);
+  background-attachment: fixed;
+  color: var(--text);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+.page {
+  display: grid;
+  gap: 1rem;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  padding: 1rem;
+}
+
+.grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.grid.cols-3 {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.grid.cols-2 {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.app-shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 250px 1fr;
+}
+
+.app-sidebar {
+  border-right: 1px solid var(--border);
+  background: var(--surface);
+  padding: 1rem;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 1rem;
+}
+
+.app-main {
+  padding: 1.2rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.floating-tools {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  display: grid;
+  gap: 0.75rem;
+  z-index: 30;
+}
+
+.calculator-widget {
+  width: 300px;
+  box-shadow: var(--shadow);
+}
+
+.calc-grid {
+  margin-top: 0.7rem;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.4rem;
+}
+
+.assistant-widget {
+  justify-self: end;
+}
+
+.assistant-open {
+  box-shadow: var(--shadow);
+}
+
+.assistant-panel {
+  width: min(360px, calc(100vw - 2rem));
+  display: grid;
+  gap: 0.7rem;
+}
+
+.assistant-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.assistant-messages {
+  max-height: 240px;
+  overflow: auto;
+  display: grid;
+  gap: 0.45rem;
+  background: var(--surface-soft);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.6rem;
+}
+
+.assistant-msg {
+  border-radius: 10px;
+  padding: 0.5rem 0.6rem;
+  font-size: 0.88rem;
+}
+
+.assistant-msg.assistant {
+  background: #e8edff;
+  color: #20306b;
+}
+
+.assistant-msg.user {
+  background: #eef9f3;
+  color: #184f30;
+}
+
+.assistant-prompts {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.35rem;
+}
+
+.assistant-form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.45rem;
+}
+
+.chart-card {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.flow-line {
+  width: 100%;
+  height: 180px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background:
+    linear-gradient(to top, rgba(49, 94, 251, 0.08), rgba(49, 94, 251, 0.02)),
+    var(--surface-soft);
+}
+
+.chart-caption-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 0.5rem;
+}
+
+.chart-caption-row small {
+  display: block;
+  color: var(--text-muted);
+}
+
+.chart-caption-row strong {
+  font-size: 0.84rem;
+}
+
+.bar-flow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(62px, 1fr));
+  gap: 0.65rem;
+  align-items: end;
+}
+
+.bar-flow-item {
+  display: grid;
+  justify-items: center;
+  gap: 0.35rem;
+}
+
+.bar-flow-column {
+  width: 100%;
+  max-width: 54px;
+  height: 130px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface-soft);
+  display: flex;
+  align-items: end;
+  overflow: hidden;
+}
+
+.bar-flow-fill {
+  width: 100%;
+  min-height: 5%;
+}
+
+.bar-flow-item small {
+  color: var(--text-muted);
+}
+
+.bar-flow-item strong {
+  font-size: 0.75rem;
+}
+
+.settings-form-grid {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  align-items: end;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  border-bottom: 1px solid var(--border);
+  padding: 0.75rem;
+  text-align: left;
+  font-size: 0.92rem;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.25rem 0.7rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.badge.success {
+  background: #e7f7ef;
+  color: var(--success);
+}
+
+.badge.warn {
+  background: #fff4dd;
+  color: #9f6500;
+}
+
+.badge.info {
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
+.auth-shell {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: radial-gradient(circle at center top, var(--primary-soft) 0%, transparent 55%);
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+}
+
+.form-row {
+  display: grid;
+  gap: 0.4rem;
+  margin-bottom: 0.9rem;
+}
+
+.input {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.7rem 0.8rem;
+  background: var(--surface-soft);
+}
+
+.btn {
+  border: 0;
+  border-radius: 10px;
+  padding: 0.7rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn.primary {
+  background: var(--primary);
+  color: #fff;
+}
+
+.btn.ghost {
+  background: transparent;
+  border: 1px solid var(--border);
+}
+
+.error-text {
+  color: var(--danger);
+  font-size: 0.85rem;
+}
+
+@media (max-width: 1024px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .app-sidebar {
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .floating-tools {
+    position: static;
+  }
+
+  .calculator-widget,
+  .assistant-panel {
+    width: 100%;
+  }
+}
+
+@media print {
+  .no-print,
+  .app-sidebar,
+  .floating-tools,
+  .btn,
+  .assistant-widget,
+  .calculator-widget {
+    display: none !important;
+  }
+
+  .app-shell {
+    display: block;
+  }
+
+  .app-main {
+    padding: 0;
+  }
+
+  .card {
+    box-shadow: none;
+    border-color: #d0d0d0;
+  }
+}

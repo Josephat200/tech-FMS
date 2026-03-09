@@ -1,0 +1,27 @@
+name: RDS Backup Snapshot
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 1 * * *'
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Create RDS snapshot
+        run: |
+          SNAPSHOT_ID="tech-rica-manual-$(date +%Y%m%d-%H%M%S)"
+          aws rds create-db-snapshot \
+            --db-instance-identifier "$RDS_DB_INSTANCE_IDENTIFIER" \
+            --db-snapshot-identifier "$SNAPSHOT_ID"
+          echo "Created snapshot: $SNAPSHOT_ID"
+        env:
+          RDS_DB_INSTANCE_IDENTIFIER: ${{ secrets.RDS_DB_INSTANCE_IDENTIFIER }}

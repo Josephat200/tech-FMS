@@ -1,0 +1,43 @@
+{
+  "family": "tech-rica-backend-task",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "512",
+  "memory": "1024",
+  "executionRoleArn": "arn:aws:iam::123456789012:role/ecsTaskExecutionRole",
+  "taskRoleArn": "arn:aws:iam::123456789012:role/ecsTaskRole",
+  "containerDefinitions": [
+    {
+      "name": "tech-rica-backend",
+      "image": "public.ecr.aws/docker/library/node:20-alpine",
+      "essential": true,
+      "portMappings": [
+        {
+          "containerPort": 4000,
+          "protocol": "tcp"
+        }
+      ],
+      "environment": [
+        { "name": "NODE_ENV", "value": "production" },
+        { "name": "PORT", "value": "4000" },
+        { "name": "API_PREFIX", "value": "/api/v1" }
+      ],
+      "secrets": [
+        { "name": "JWT_SECRET", "valueFrom": "arn:aws:ssm:REGION:ACCOUNT:parameter/techrica/JWT_SECRET" },
+        { "name": "DB_HOST", "valueFrom": "arn:aws:ssm:REGION:ACCOUNT:parameter/techrica/DB_HOST" },
+        { "name": "DB_PORT", "valueFrom": "arn:aws:ssm:REGION:ACCOUNT:parameter/techrica/DB_PORT" },
+        { "name": "DB_NAME", "valueFrom": "arn:aws:ssm:REGION:ACCOUNT:parameter/techrica/DB_NAME" },
+        { "name": "DB_USER", "valueFrom": "arn:aws:ssm:REGION:ACCOUNT:parameter/techrica/DB_USER" },
+        { "name": "DB_PASSWORD", "valueFrom": "arn:aws:ssm:REGION:ACCOUNT:parameter/techrica/DB_PASSWORD" }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/tech-rica-backend",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "credentials": [
+    {
+      "email": "admin@techrica.local",
+      "password": "Tmp#WY1uL0N7ZarQxREB9aA",
+      "role": "ADMIN"
+    },
+    {
+      "email": "accountant@techrica.local",
+      "password": "Tmp#c6eiiNdWqJuhd1xd9aA",
+      "role": "ACCOUNTANT"
+    },
+    {
+      "email": "financemanager@techrica.local",
+      "password": "Tmp#qYqXiXfcBbtV7rxt9aA",
+      "role": "FINANCE_MANAGER"
+    },
+    {
+      "email": "hr@techrica.local",
+      "password": "Tmp#t-3hepHazThdSifr9aA",
+      "role": "HR"
+    },
+    {
+      "email": "itsupport@techrica.local",
+      "password": "Tmp#YwyQ3DpRSepmX9dR9aA",
+      "role": "USER"
+    }
+  ]
+}

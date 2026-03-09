@@ -1,0 +1,12 @@
+process.env.NODE_ENV = 'test';
+process.env.PORT = '4000';
+process.env.API_PREFIX = '/api/v1';
+process.env.JWT_SECRET = 'test_jwt_secret_very_long_for_secure_testing_12345';
+process.env.ACCESS_TOKEN_EXPIRES_IN = '15m';
+process.env.REFRESH_TOKEN_EXPIRES_DAYS = '7';
+process.env.DB_HOST = 'localhost';
+process.env.DB_PORT = '5432';
+process.env.DB_NAME = 'tech_rica';
+process.env.DB_USER = 'postgres';
+process.env.DB_PASSWORD = 'postgres';
+process.env.LOG_LEVEL = 'silent';
