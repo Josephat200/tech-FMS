@@ -1,12 +1,8 @@
-databases:
-  - name: tech-fms-db
-    databaseName: tech_rica
-    user: tech_rica_user
-
 services:
   - type: web
     name: tech-fms-backend
     runtime: node
+    plan: free
     rootDir: backend
     autoDeployTrigger: commit
     healthCheckPath: /api/v1/health
@@ -33,26 +29,18 @@ services:
         value: "10000"
       - key: DB_SSL_REJECT_UNAUTHORIZED
         value: "true"
+      - key: DB_SSL_CA
+        value: ""
       - key: DB_HOST
-        fromDatabase:
-          name: tech-fms-db
-          property: host
+        sync: false
       - key: DB_PORT
-        fromDatabase:
-          name: tech-fms-db
-          property: port
+        sync: false
       - key: DB_NAME
-        fromDatabase:
-          name: tech-fms-db
-          property: database
+        sync: false
       - key: DB_USER
-        fromDatabase:
-          name: tech-fms-db
-          property: user
+        sync: false
       - key: DB_PASSWORD
-        fromDatabase:
-          name: tech-fms-db
-          property: password
+        sync: false
       - key: LOG_LEVEL
         value: info
       - key: API_RATE_LIMIT_WINDOW_MS
@@ -73,6 +61,7 @@ services:
   - type: web
     name: tech-fms-frontend
     runtime: static
+    plan: free
     rootDir: frontend
     autoDeployTrigger: commit
     buildCommand: npm ci && npm run build
