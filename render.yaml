@@ -2,15 +2,13 @@ databases:
   - name: tech-fms-db
     databaseName: tech_rica
     user: tech_rica_user
-    plan: basic-256mb
 
 services:
   - type: web
     name: tech-fms-backend
     runtime: node
-    plan: free
     rootDir: backend
-    autoDeploy: true
+    autoDeployTrigger: commit
     healthCheckPath: /api/v1/health
     buildCommand: npm ci && npm run build
     startCommand: npm run migrate && npm run start:prod
@@ -18,11 +16,11 @@ services:
       - key: NODE_ENV
         value: production
       - key: PORT
-        value: 4000
+        value: "4000"
       - key: API_PREFIX
         value: /api/v1
       - key: TRUST_PROXY
-        value: 1
+        value: "1"
       - key: CORS_ALLOWED_ORIGINS
         value: https://tech-fms-frontend.onrender.com
       - key: JWT_SECRET
@@ -30,11 +28,11 @@ services:
       - key: ACCESS_TOKEN_EXPIRES_IN
         value: 15m
       - key: REFRESH_TOKEN_EXPIRES_DAYS
-        value: 7
+        value: "7"
       - key: SHUTDOWN_GRACE_PERIOD_MS
-        value: 10000
+        value: "10000"
       - key: DB_SSL_REJECT_UNAUTHORIZED
-        value: true
+        value: "true"
       - key: DB_HOST
         fromDatabase:
           name: tech-fms-db
@@ -58,26 +56,25 @@ services:
       - key: LOG_LEVEL
         value: info
       - key: API_RATE_LIMIT_WINDOW_MS
-        value: 60000
+        value: "60000"
       - key: API_RATE_LIMIT_MAX
-        value: 300
+        value: "300"
       - key: AI_ASSISTANT_MODE
         value: rules
       - key: MFA_ENABLED
-        value: true
+        value: "true"
       - key: MFA_CODE_EXPIRES_MINUTES
-        value: 10
+        value: "10"
       - key: MFA_MAX_ATTEMPTS
-        value: 5
+        value: "5"
       - key: MFA_DEV_BYPASS_CODE
         value: ""
 
   - type: web
     name: tech-fms-frontend
     runtime: static
-    plan: free
     rootDir: frontend
-    autoDeploy: true
+    autoDeployTrigger: commit
     buildCommand: npm ci && npm run build
     staticPublishPath: dist
     envVars:
