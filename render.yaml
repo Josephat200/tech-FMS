@@ -2,7 +2,7 @@ databases:
   - name: tech-fms-db
     databaseName: tech_rica
     user: tech_rica_user
-    plan: free
+    plan: basic-256mb
 
 services:
   - type: web
